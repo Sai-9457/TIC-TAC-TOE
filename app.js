@@ -3,6 +3,7 @@ let rstbtn=document.querySelector("#rst");
 let NewGamebtn=document.querySelector("#New");
 let msg=document.querySelector(".msg");
 let msgcontainer=document.querySelector(".msg-container");
+let drawmsg=document.querySelector(".draw-msg");
 
 
 let turnO=true;
@@ -43,6 +44,7 @@ const resetgame =()=>{
     turnO=true;
     NewGame();
     msgcontainer.classList.add("hide");
+    drawmsg.classList.add("hide1");
 }
 
 const endgame = () => {
@@ -55,6 +57,7 @@ const NewGame = () => {
   boxes.forEach(b => {
     b.disabled = false;
     b.innerText="";
+    counter=0;
   });
 };
 const CheckWinner=()=>{
@@ -76,3 +79,14 @@ for(let pattern of WINPATT){
 NewGamebtn.addEventListener("click",resetgame);
 
 rstbtn.addEventListener("click",resetgame);
+
+let counter=0;
+boxes.forEach((box)=>{
+    box.addEventListener("click",()=>{
+        counter++;
+        if(counter===9){
+            drawmsg.classList.remove("hide1");
+
+        }
+    })
+})
